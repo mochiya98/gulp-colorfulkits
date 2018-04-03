@@ -12,6 +12,7 @@ const log = require("fancy-log");
 const colors = require("ansi-colors");
 
 const colorful = function(opts){
+	if(!opts) opts = {};
 	opts.color = opts.color || "cyan";
 	opts.cwd = opts.cwd || ".";
 	opts.indent = opts.indent === void 0 ? 1 : opts.indent;
