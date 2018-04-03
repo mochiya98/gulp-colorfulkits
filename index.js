@@ -66,18 +66,22 @@ const gulpColorfulEslint = lazypipe()
 const gulpWatchColorful = function(globPath, func, opts){
 	if(!opts) opts = {};
 	if(!opts.ignoreDirectoryEvents) opts.ignoreDirectoryEvents = true;
-	return gulp.watch(globPath, function(...args){
-		if(opts.ignoreDirectoryEvents && fs.statSync(args[0].path).isDirectory())return;
+	let watcher = gulp.watch(globPath);
+	watcher.on("all", function(event, filepath, stat){
+		let fullpath = path.resolve(filepath);
+		if(opts.ignoreDirectoryEvents && stat.isDirectory())return;
 		log(colors.bold({
-			"added"  : colors.magenta("add  "),
-			"changed": colors.yellow("change"),
-			"deleted": colors.red("delete"),
-			"renamed": colors.red("rename"),
-		}[args[0].type])
+			"add"      : colors.magenta("add  "),
+			"addDir"   : colors.magenta("add  "),
+			"change"   : colors.yellow("change"),
+			"unlink"   : colors.red("delete"),
+			"unlinkDir": colors.red("delete"),
+		}[event])
 			+ ": "
-			+ colors.bold(colors.green(args[0].path)));
-		func(...args);
+			+ colors.bold(colors.green(fullpath)));
+		func(event, fullpath, stat);
 	});
+	return watcher;
 };
 
 const watchColorful = function(...args){
