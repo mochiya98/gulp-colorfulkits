@@ -16,7 +16,6 @@ const colorful = function(opts){
 	opts.cwd = opts.cwd || ".";
 	opts.indent = opts.indent === void 0 ? 1 : opts.indent;
 	let indent = "  ".repeat(opts.indent);
-	//let log_header = indent+"-> \x1b[1m\x1b["+colors[opts.color]+"m";
 	let transform = function(file, encoding, callback){
 		if(file.isNull())return callback(null, file);
 		let fp = opts.cwd
@@ -26,7 +25,6 @@ const colorful = function(opts){
 			)
 			: file.path;
 		log(`${indent} -> ${colors.bold(colors[opts.color](fp))}`);
-		//console.log(log_header+fp+"\x1b[0m");
 		this.push(file);
 		return callback();
 	};
