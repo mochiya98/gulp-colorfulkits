@@ -45,12 +45,14 @@ const gulpColorfulEslint = lazypipe()
 	.pipe(
 		eslint.result,
 		res => {
-			if(res.messages.length === 0)return;
 			log(
 				colors.bold(colors.bgblue(
 					`ESLint: ${res.filePath}`
 				))
 			);
+			if(res.messages.length === 0){
+				log(colors.bold(colors.cyan("passed.")));
+			}
 			for(let msg of res.messages){
 				log(
 					colors.bold(colors[[null, "yellow", "red"][msg.severity]](
