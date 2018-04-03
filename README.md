@@ -1,4 +1,4 @@
-﻿# gulp-colorfulkits
+﻿# gulp-colorfulkits [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
 Make gulp log colorful
 ```
 WARNING: this module require many unwanted modules.
@@ -8,7 +8,7 @@ so, not published yet. currently private.
 
 ## Usage
 ```sh
-npm i git+https://github.com/mochiya98/gulp-colorfulkits#master
+npm i --save-dev github:mochiya98/gulp-colorfulkits#master
 ```
 ```javascript
 const {
