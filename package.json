@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "description": "Make gulp log colorful",
   "private": true,
-  "homepage": "https://github.com/YukimasaFunaoka/gulp-colorfulkits",
+  "homepage": "https://github.com/mochiya98/gulp-colorfulkits",
   "main": "index.js",
   "scripts": {
     "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url" : "https://github.com/mochiya98/gulp-colorfulkits"
   },
   "author": "YukimasaFunaoka",
   "license": "MIT",
