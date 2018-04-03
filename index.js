@@ -5,7 +5,6 @@ const {Transform} = require("stream");
 const lazypipe = require("lazypipe");
 
 const gulp = require("gulp");
-const gutil = require("gulp-util");
 
 const eslint = require("gulp-eslint");
 const watch = require("gulp-watch");
