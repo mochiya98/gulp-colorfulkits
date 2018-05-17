@@ -1,10 +1,10 @@
 {
   "name": "gulp-colorfulkits",
   "description": "Make gulp log colorful",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "author": "Yukimasa Funaoka <yukimasafunaoka@gmail.com>",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "homepage": "https://github.com/mochiya98/gulp-colorfulkits",
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
     "test": ""
   },
   "dependencies": {
-    "ansi-colors": "^1.1.0",
+    "ansi-colors": "^2.0.1",
     "fancy-log": "^1.3.2",
     "gulp": "^4.0.0",
     "gulp-eslint": "^4.0.2",

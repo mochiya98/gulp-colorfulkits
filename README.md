@@ -1,9 +1,6 @@
-﻿# gulp-colorfulkits:lollipop: [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
-Make gulp log colorful
-
-> WARNING: this module require many unwanted modules.  
-> it's grab-bag of modules.  
-> so, not published yet. currently private.
+# gulp-colorfulkits:lollipop: [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
+Make gulp log colorful  
+[![NPM](https://nodei.co/npm/gulp-colorfulkits.png)](https://nodei.co/npm/gulp-colorfulkits/)  
 
 ## Usage
 ```sh
