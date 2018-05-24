@@ -4,7 +4,7 @@ Make gulp log colorful
 
 ## Usage
 ```sh
-npm i --save-dev github:mochiya98/gulp-colorfulkits#master
+npm i --save-dev gulp-colorfulkits
 ```
 ```javascript
 const {
