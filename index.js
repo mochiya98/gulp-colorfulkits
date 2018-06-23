@@ -46,7 +46,7 @@ const gulpColorfulEslint = lazypipe()
 		eslint.result,
 		res => {
 			log(
-				colors.bold(colors.bgblue(
+				colors.bold(colors.bgBlue(
 					`ESLint: ${res.filePath}`
 				))
 			);
