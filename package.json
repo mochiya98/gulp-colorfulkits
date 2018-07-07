@@ -1,7 +1,7 @@
 {
   "name": "gulp-colorfulkits",
   "description": "Make gulp log colorful",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "author": "Yukimasa Funaoka <yukimasafunaoka@gmail.com>",
   "license": "MIT",
   "private": false,
