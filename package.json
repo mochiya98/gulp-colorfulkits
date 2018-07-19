@@ -19,7 +19,7 @@
     "fancy-log": "^1.3.2",
     "gulp": "^4.0.0",
     "gulp-eslint": "^5.0.0",
-    "gulp-watch": "github:TheDancingCode/gulp-watch#remove-gutil",
+    "gulp-watch": "github:floatdrop/gulp-watch#master",
     "lazypipe": "^1.0.1"
   },
   "devDependencies": {}
