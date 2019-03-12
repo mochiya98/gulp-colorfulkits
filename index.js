@@ -6,8 +6,55 @@ const lazypipe = require("lazypipe");
 
 const gulp = require("gulp");
 
-const eslint = require("gulp-eslint");
-const watch = require("gulp-watch");
+let eslint, watch, gulpColorfulEslint = null, watchColorful = null;
+try{
+	eslint = require("gulp-eslint");
+	gulpColorfulEslint = lazypipe()
+		.pipe(eslint)
+		.pipe(
+			eslint.result,
+			res => {
+				log(
+					colors.bold(colors.bgBlue(
+						`ESLint: ${res.filePath}`
+					))
+				);
+				if(res.messages.length === 0){
+					log(colors.bold(colors.cyan("passed.")));
+				}
+				for(let msg of res.messages){
+					log(
+						colors.bold(colors[[null, "yellow", "red"][msg.severity]](
+							`  ${msg.line}:${msg.column} ${msg.message} (${msg.ruleId})`
+						))
+					);
+				}
+			}
+		);
+
+}catch(_){}
+try{
+	watch = require("gulp-watch");
+	watchColorful = function(...args){
+		return watch(...args)
+			.pipe(new Transform({
+				objectMode: true,
+				transform : function(evt, encoding, callback){
+					if(evt.isNull())return callback(null, evt);
+					log(colors.bold({
+						"add"   : colors.magenta("add  "),
+						"change": colors.yellow("change"),
+						"unlink": colors.red("delete"),
+					}[evt.event])
+						+ ": "
+						+ colors.bold(colors.green(evt.path)));
+					this.push(evt);
+					return callback();
+				},
+			}));
+};
+}catch(_){}
+
 const log = require("fancy-log");
 const colors = require("ansi-colors");
 
@@ -40,29 +87,6 @@ colorful.preset = function(opts){
 	};
 };
 
-const gulpColorfulEslint = lazypipe()
-	.pipe(eslint)
-	.pipe(
-		eslint.result,
-		res => {
-			log(
-				colors.bold(colors.bgBlue(
-					`ESLint: ${res.filePath}`
-				))
-			);
-			if(res.messages.length === 0){
-				log(colors.bold(colors.cyan("passed.")));
-			}
-			for(let msg of res.messages){
-				log(
-					colors.bold(colors[[null, "yellow", "red"][msg.severity]](
-						`  ${msg.line}:${msg.column} ${msg.message} (${msg.ruleId})`
-					))
-				);
-			}
-		}
-	);
-
 const gulpWatchColorful = function(globPath, func, opts){
 	if(!opts) opts = {};
 	if(!opts.ignoreDirectoryEvents) opts.ignoreDirectoryEvents = true;
@@ -82,25 +106,6 @@ const gulpWatchColorful = function(globPath, func, opts){
 		func(event, fullpath, stat);
 	});
 	return watcher;
-};
-
-const watchColorful = function(...args){
-	return watch(...args)
-		.pipe(new Transform({
-			objectMode: true,
-			transform : function(evt, encoding, callback){
-				if(evt.isNull())return callback(null, evt);
-				log(colors.bold({
-					"add"   : colors.magenta("add  "),
-					"change": colors.yellow("change"),
-					"unlink": colors.red("delete"),
-				}[evt.event])
-					+ ": "
-					+ colors.bold(colors.green(evt.path)));
-				this.push(evt);
-				return callback();
-			},
-		}));
 };
 
 module.exports = {
